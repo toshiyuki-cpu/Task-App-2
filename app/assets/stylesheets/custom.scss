@@ -2,7 +2,6 @@
 @import "bootstrap";
 
 /* 共通 */
-
 body {
   padding-top: 60px;
 }
@@ -51,21 +50,44 @@ p {
 }
 
 /* ヘッダー */
+#header {
+  background-color: teal;
+}
 
+/* ヘッダーロゴ */
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
-  text-transform: uppercase;
+  font-style: italic;
+  text-transform: none;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  &:hover {
+    color: silver;
+    text-decoration: none;
+  }
 }
 
-#logo:hover {
+/* ヘッダーリスト */
+li .header-list {
+  color: #fff !important;
+  font-weight: bold;
+  &:hover {
+    color: silver !important;
+  }
+}
+
+/* ヘッダーリスト（ドロップダウン項目） */
+#dropdown-title {
   color: #fff;
-  text-decoration: none;
+  background-color: teal;
+  font-weight: bold;
+  &:hover {
+    color: silver;
+  }
 }
 
 /* デバッグウインドウ */
