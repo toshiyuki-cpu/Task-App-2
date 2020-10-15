@@ -7,26 +7,34 @@
     <table class="table table-bordered" id="table-user">
       <tbody>
         <tr>
-        <th>id</th>
-        <td><%= @task.id %></td>
-      </tr>
-      <tr>
-        <th>名称</th>
-        <td><%= @task.name %></td>
-      </tr>
-      <tr>
+          <th>id</th>
+            <td><%= @task.id %></td>
+          </tr>
+        <tr>
+          <th>名称</th>
+            <td><%= @task.name %></td>
+        </tr>
+        <tr>
         <th>詳細</th>
-        <td><%= @task.description %></td>
-      </tr>
-      <tr>
-        <th>作成日</th>
-        <td><%= @task.created_at %></td>
-      </tr>
-      <tr>
+          <td><%= @task.description %></td>
+        </tr>
+        <tr>
+          <th>作成日</th>
+            <td><%= @task.created_at %></td>
+          </tr>
+        <tr>
         <th>更新日</th>
-        <td><%= @task.updated_at %></td>
-      </tr>
+          <td><%= @task.updated_at %></td>
+        </tr>
       </tbody>
     </table>
+    <div>
+<!-- edit_user_task GET    /users/:user_id/tasks/:id/edit(.:format) tasks#edit -->
+<!-- 引数に@user,@taskと書くのはルーティングがネストされてる為-->
+      <%= link_to '編集', edit_user_task_path(@user, @task), class: "btn btn-lg btn-success" %>
+<!--ルーティング DELETE /users/:user_id/tasks/:id(.:format)   tasks#destroy-->
+      <%= link_to '削除', user_task_path(@user, @task), method: :delete,
+      data: { confirm: "「#{@task.name}」を削除します。よろしいですか？" }, class: "btn btn-lg btn-danger" %>
+    </div>
   </div>
 </div>

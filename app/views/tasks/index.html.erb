@@ -1,5 +1,5 @@
 <% provide(:title, @user.name) %>
-<h1>のタスク一覧</h1>
+<h1><%= @user.name %>のタスク一覧</h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
@@ -15,9 +15,17 @@
       <tbody>
         <% @tasks.each do |task| %>
           <tr>
-            <td><%= task.name %></td>
+<!-- ルーティング　user_task GET    /users/:user_id/tasks/:id(.:format)      tasks#show -->
+            <td><%= link_to task.name, user_task_path(@user, task) %></td>
             <td><%= task.created_at %></td>
-            <td></td>
+            <td>
+<!-- ルーティング edit_user_task GET    /users/:user_id/tasks/:id/edit(.:format) tasks#edit -->
+              <%= link_to '編集', edit_user_task_path(@user, task), class: "btn btn-success" %>
+<!-- ルーティング DELETE /users/:user_id/tasks/:id(.:format)  tasks#destroy--> 
+<!-- ルーティング user_task GET    /users/:user_id/tasks/:id(.:format)      tasks#show-->
+              <%= link_to "削除", user_task_path(@user, task), method: :delete,
+              data: { confirm: "「#{task.name}」を削除します。よろしいですか？" }, class: "btn btn-danger" %>
+            </td>
           </tr>
         <% end %>
       </tbody>
