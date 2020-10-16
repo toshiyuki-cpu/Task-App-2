@@ -11,7 +11,9 @@ class TasksController < ApplicationController
   
   def show
     @user = User.find(params[:user_id])
-    @task = @user.tasks.find_by(id: params[:id])
+    # @task = @user.tasks.find_by(id: params[:id])
+    @task = @user.tasks.find(params[:id])
+    
   end
   
   def new
