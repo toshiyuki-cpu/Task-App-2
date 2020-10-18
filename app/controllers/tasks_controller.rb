@@ -1,4 +1,12 @@
 class TasksController < ApplicationController
+#     user_tasks GET    /users/:user_id/tasks(.:format)          tasks#index
+#                POST   /users/:user_id/tasks(.:format)          tasks#create
+#  new_user_task GET    /users/:user_id/tasks/new(.:format)      tasks#new
+# edit_user_task GET    /users/:user_id/tasks/:id/edit(.:format) tasks#edit
+#      user_task GET    /users/:user_id/tasks/:id(.:format)      tasks#show
+#                PATCH  /users/:user_id/tasks/:id(.:format)      tasks#update
+#                PUT    /users/:user_id/tasks/:id(.:format)      tasks#update
+#                DELETE /users/:user_id/tasks/:id(.:format)      tasks#destroy
   
 # ルーティングを見ると
 # user_tasks GET    /users/:user_id/tasks(.:format)          tasks#index
