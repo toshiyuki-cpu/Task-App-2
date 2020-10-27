@@ -1,0 +1,31 @@
+<% provide(:title, 'users') %>
+
+<h1>利用者一覧</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th><%= User.human_attribute_name :name %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.name, user %>
+            <% if user.admin? %>
+              <span class="label label-primary label-user-division">管理者</span>
+            <% else %>
+              <span class="label label-success label-user-division">一般</span>
+            <% end %>
+          </td>
+          <td><%= link_to '削除', user, method: :delete, class: "btn btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>    
+</div>

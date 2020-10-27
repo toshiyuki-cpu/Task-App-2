@@ -16,7 +16,7 @@
         </tr>
         <tr>
         <th>詳細</th>
-          <td><%= @task.description %></td>
+          <td><%= auto_link(safe_join(@task.description.split("\n"), tag(:br))) %></td>
         </tr>
         <tr>
           <th>作成日</th>
@@ -29,12 +29,15 @@
       </tbody>
     </table>
     <div>
+      <%= link_to '戻る', user_tasks_path(@user, @task), class: "btn btn-lg btn-default" %>
 <!-- edit_user_task GET    /users/:user_id/tasks/:id/edit(.:format) tasks#edit -->
 <!-- 引数に@user,@taskと書くのはルーティングがネストされてる為-->
       <%= link_to '編集', edit_user_task_path(@user, @task), class: "btn btn-lg btn-success" %>
 <!--ルーティング DELETE /users/:user_id/tasks/:id(.:format)   tasks#destroy-->
       <%= link_to '削除', user_task_path(@user, @task), method: :delete,
       data: { confirm: "「#{@task.name}」を削除します。よろしいですか？" }, class: "btn btn-lg btn-danger" %>
+      
+      
     </div>
   </div>
 </div>

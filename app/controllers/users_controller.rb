@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 #                PATCH  /users/:id(.:format)                     users#update
 #                PUT    /users/:id(.:format)                     users#update
 #                DELETE /users/:id(.:format)                     users#destroy
+  def index
+    @users = User.all
+  end
   
   def show
    # user GET    /users/:id(.:format)    users#show
@@ -27,6 +30,20 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render :new
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit
     end
   end
   

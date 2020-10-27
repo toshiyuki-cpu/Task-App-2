@@ -15,7 +15,7 @@
 <!-- ルーティング user_task GET    /users/:user_id/tasks/:id(.:format)      tasks#show-->      
       <%= f.submit "更新", class: "btn btn-lg btn-primary btn-form" %>
 <!-- ルーティング user_tasks GET    /users/:user_id/tasks(.:format)   tasks#index-->
-      <%= link_to 'キャンセル', user_tasks_path(@user), class: "btn btn-default btn-form" %>
+      <%= link_to 'キャンセル', user_tasks_path(@user, @task), class: "btn btn-lg btn-default" %>
    <% end %>
   </div>
 </div>
