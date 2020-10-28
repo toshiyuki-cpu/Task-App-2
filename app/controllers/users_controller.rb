@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  #before_action :logged_in_user, only: %i(index show edit update destroy)
+  #before_action :admin_user, only: %i(index destroy)
+  #before_action :correct_user, only: %i(edit update)
+  #before_action :admin_or_correct, only: %i(show)
 #          users GET    /users(.:format)                         users#index
 #                POST   /users(.:format)                         users#create
 #       new_user GET    /users/new(.:format)                     users#new
@@ -8,7 +12,8 @@ class UsersController < ApplicationController
 #                PUT    /users/:id(.:format)                     users#update
 #                DELETE /users/:id(.:format)                     users#destroy
   def index
-    @users = User.all
+    #@users = User.all
+    @users = User.paginate(page: params[:page])
   end
   
   def show
@@ -17,6 +22,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    if logged_in? && !current_user.admin?
+      flash[:info] = 'すでにログインしています。'
+      redirect_to current_user
+    end
    # new_user GET    /users/new(.:format)   users#new
     @user = User.new
   end
@@ -45,6 +54,13 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = "#{@user.name}のデータを削除しました。"
+    redirect_to users_url
   end
   
   private

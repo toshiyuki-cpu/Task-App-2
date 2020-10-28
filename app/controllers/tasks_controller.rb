@@ -1,4 +1,8 @@
 class TasksController < ApplicationController
+  #before_action :set_task, only: %i(show edit update destroy)
+  #before_action :logged_in_user
+  #before_action :correct_user
+  
 #     user_tasks GET    /users/:user_id/tasks(.:format)          tasks#index
 #                POST   /users/:user_id/tasks(.:format)          tasks#create
 #  new_user_task GET    /users/:user_id/tasks/new(.:format)      tasks#new
@@ -19,8 +23,8 @@ class TasksController < ApplicationController
   
   def show
     @user = User.find(params[:user_id])
-    # @task = @user.tasks.find_by(id: params[:id])
-    @task = @user.tasks.find(params[:id])
+    @task = @user.tasks.find_by(id: params[:id])
+    #@task = @user.tasks.find(params[:id])
     
   end
   
@@ -72,6 +76,8 @@ class TasksController < ApplicationController
     flash[:success] = "タスクを削除しました。"
       redirect_to user_tasks_url(@user)
   end
+  
+  private
   
   def task_params
       params.require(:task).permit(:name, :description) 
