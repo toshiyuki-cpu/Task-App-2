@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
+  before_action :logged_in_user # ApplicationControllerに定義
   before_action :set_user
   before_action :set_task, only: %i(show edit update destroy)
-  before_action :logged_in_user
+  #before_action :logged_in_user
   before_action :correct_user
   
 #     user_tasks GET    /users/:user_id/tasks(.:format)          tasks#index
